@@ -6,28 +6,26 @@ export const HomePage = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="relative min-h-screen w-full bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1518655048521-f130df041f66?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80")' }}>
-      <div className="absolute inset-0 bg-black opacity-40"></div> {/* Adding overlay for readability */}
-      
+    <div className="relative min-h-screen w-full bg-gradient-to-br from-blue-100 via-white to-blue-200 bg-fixed flex items-center justify-center">
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2 }}
-        className="relative z-10 w-full max-w-2xl text-white text-center px-6 md:px-10 py-8 bg-white bg-opacity-50 rounded-3xl shadow-xl mx-auto"
+        className="backdrop-blur-xl bg-white/30 border border-white/20 shadow-2xl rounded-3xl p-10 max-w-2xl w-full mx-6 text-white text-center"
       >
-        <h1 className="text-5xl font-extrabold mb-8 text-white drop-shadow-2xl">
+        <h1 className="text-5xl font-extrabold mb-8 text-gray-900 drop-shadow-lg">
           Sentence Construction Quiz
         </h1>
 
-        <div className="text-lg mb-8 space-y-4 font-semibold text-white">
-          <p><span className="text-yellow-400">Total Questions:</span> <span className="font-bold text-yellow-300">10</span></p>
-          <p><span className="text-yellow-400">Time per Question:</span> <span className="font-bold text-yellow-300">30 seconds</span></p>
-          <p><span className="text-yellow-400">Marks per Correct Answer:</span> <span className="font-bold text-yellow-300">1</span></p>
+        <div className="text-lg mb-8 space-y-4 font-semibold text-gray-800">
+          <p><span className="text-yellow-600">Total Questions:</span> <span className="font-bold text-yellow-500">10</span></p>
+          <p><span className="text-yellow-600">Time per Question:</span> <span className="font-bold text-yellow-500">30 seconds</span></p>
+          <p><span className="text-yellow-600">Marks per Correct Answer:</span> <span className="font-bold text-yellow-500">1</span></p>
         </div>
 
-        <div className="bg-white bg-opacity-30 rounded-lg p-6 text-sm mb-8">
-          <p className="mb-4 font-semibold text-white">Instructions:</p>
-          <ul className="list-disc list-inside space-y-2 text-white text-left text-lg">
+        <div className="bg-white/20 backdrop-blur-md rounded-lg p-6 text-sm mb-8 border border-white/10">
+          <p className="mb-4 font-semibold text-gray-900">Instructions:</p>
+          <ul className="list-disc list-inside space-y-2 text-left text-lg text-gray-800">
             <li>Each question has 4 blanks to be filled using the given options.</li>
             <li>Click the correct words in the right order to fill the blanks.</li>
             <li>Timer resets with each new question.</li>
