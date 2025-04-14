@@ -12,15 +12,36 @@ export const QuizPage = () => {
   const [time, setTime] = useState(30);
   const navigate = useNavigate();
 
-  // Fetch questions and initialize answers
+  // Load saved state on first mount
   useEffect(() => {
+    const savedState = localStorage.getItem("quizState");
+    if (savedState) {
+      const { currentIndex, answers, time } = JSON.parse(savedState);
+      setCurrentIndex(currentIndex);
+      setAnswers(answers);
+      setTime(time);
+    }
+
     fetchQuestions().then((data) => {
       setQuestions(data);
-      setAnswers(Array(data.length).fill(["", "", "", ""]));
+      // Only initialize answers if not already restored
+      if (!savedState) {
+        setAnswers(Array(data.length).fill(["", "", "", ""]));
+      }
     });
   }, []);
 
-  // Reset answers for the current question if not already filled
+  // Save quiz progress to localStorage
+  useEffect(() => {
+    if (questions.length > 0) {
+      localStorage.setItem(
+        "quizState",
+        JSON.stringify({ currentIndex, answers, time })
+      );
+    }
+  }, [currentIndex, answers, time, questions.length]);
+
+  // Reset blanks for current question if empty
   useEffect(() => {
     setAnswers((prev) => {
       const updated = [...prev];
@@ -31,17 +52,17 @@ export const QuizPage = () => {
     });
   }, [currentIndex]);
 
-  // Handle "Next" button logic
+  // Next or Submit
   const handleNext = () => {
     if (currentIndex + 1 < questions.length) {
       setCurrentIndex(currentIndex + 1);
       setTime(30);
     } else {
+      localStorage.removeItem("quizState"); // clear progress
       navigate("/result", { state: { questions, answers } });
     }
   };
 
-  // Add a word to the next empty blank
   const handleFill = (idx: number, word: string) => {
     setAnswers((prev) => {
       const updated = [...prev];
@@ -55,7 +76,6 @@ export const QuizPage = () => {
     });
   };
 
-  // Remove a filled word
   const handleRemove = (idx: number) => {
     setAnswers((prev) => {
       const updated = [...prev];
