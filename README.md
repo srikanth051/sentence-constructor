@@ -100,20 +100,3 @@ src/
 The app is deployed on **Vercel**:  
 🔗 [https://sentence-constructor-five.vercel.app](https://sentence-constructor-five.vercel.app)
 
----
-
-## 🙋‍♂️ Contributing
-
-Contributions are welcome! Fork the repo and create a pull request with your improvements or fixes.
-
----
-
-## 📄 License
-
-This project is open-source and available under the [MIT License](LICENSE).
-
----
-
-## 💬 Credits
-
-Developed with 💛 using React, Tailwind, and Framer Motion.
